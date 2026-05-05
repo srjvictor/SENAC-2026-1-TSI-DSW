@@ -1,0 +1,42 @@
+:root {
+    --bg-color: #050505;
+    --container-bg: #111111;
+    --text-color: #ffffff;
+    --neon-primary: #00ffff;
+    --neon-success: #39ff14;
+    --neon-danger: #ff073a;
+    --border-color: #222222;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    margin: 0;
+}
+
+.container {
+    background: var(--container-bg);
+    width: 100%;
+    max-width: 500px;
+    padding: 20px 30px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow:
+        0 0 5px var(--neon-primary),
+        0 0 10px var(--neon-primary),
+        0 0 20px var(--neon-primary);
+}
