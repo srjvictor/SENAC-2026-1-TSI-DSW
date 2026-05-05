@@ -51,3 +51,25 @@ function renderTaskElement(task) {
     li.appendChild(actionsDiv);
     taskList.appendChild(li);
 }
+
+taskForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const title = taskInput.value.trim();
+    if (!title) return;
+
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title: title })
+        });
+
+        if (response.ok) {
+            const newTask = await response.json();
+            renderTaskElement(newTask);
+            taskInput.value = '';
+        }
+    } catch (error) {
+        console.error('Erro ao criar tarefa:', error);
+    }
+});
