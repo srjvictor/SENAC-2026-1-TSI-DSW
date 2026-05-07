@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas Segura</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container" id="auth-container">
+        <h1 id="auth-title">Login</h1>
+
+        <form id="auth-form">
+            <input type="text" id="username" placeholder="Usuário" required autocomplete="off">
+            <input type="password" id="password" placeholder="Senha" required>
+            <button type="submit" id="auth-btn">Entrar</button>
+        </form>
+
+        <p id="auth-error" class="error-message"></p>
+        <p class="toggle-auth">
+            <a href="#" id="toggle-auth-link">Não tem uma conta? Cadastre-se</a>
+        </p>
+    </div>
+
+    <div class="container" id="app-container" style="display: none;">
+        <div class="header-actions">
+            <h1>Minhas Tarefas</h1>
+            <button id="logout-btn" class="btn-delete">Sair</button>
+        </div>
+
+        <form id="task-form">
+            <input type="text" id="task-input" placeholder="O que precisa ser feito?" required autocomplete="off">
+            <button type="submit">Adicionar</button>
+        </form>
+
+        <ul id="task-list"></ul>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
