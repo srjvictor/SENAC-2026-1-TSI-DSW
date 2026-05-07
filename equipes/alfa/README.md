@@ -8,3 +8,6 @@ Backend e Banco de Dados para o sistema de lista de tarefas.
 2. Navegue até a pasta `equipes/alfa`.
 3. Execute: `docker compose up --build -d`
 4. A API estará em http://localhost:8080.
+
+go build -o todolist-api.exe
+go run .

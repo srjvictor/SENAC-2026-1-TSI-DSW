@@ -9,6 +9,8 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"strconv" 
+	"strings" 
 	"syscall"
 	"time"
 
@@ -26,7 +28,7 @@ type Task struct {
 func main() {
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true",
 		getEnv("DB_USER", "root"),
-		getEnv("DB_PASS", "root"),
+		getEnv("DB_PASS", "P@$$w0rd"),
 		getEnv("DB_HOST", "localhost"),
 		getEnv("DB_PORT", "3306"),
 		getEnv("DB_NAME", "todolist"),
@@ -105,6 +107,13 @@ func createTask(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Validação rigorosa: remove espaços em branco e bloqueia títulos vazios
+	t.Title = strings.TrimSpace(t.Title)
+	if t.Title == "" {
+		http.Error(w, "O título não pode estar vazio", http.StatusBadRequest)
+		return
+	}
+
 	stmt, err := db.Prepare("INSERT INTO tasks (title) VALUES (?)")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -126,7 +135,15 @@ func createTask(w http.ResponseWriter, r *http.Request) {
 }
 
 func updateTask(w http.ResponseWriter, r *http.Request) {
-	id := r.PathValue("id")
+	idStr := r.PathValue("id")
+	
+	// Validação rigorosa: Garante que o ID é estritamente numérico
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		http.Error(w, "ID inválido: deve ser numérico", http.StatusBadRequest)
+		return
+	}
+
 	stmt, err := db.Prepare("UPDATE tasks SET completed = true WHERE id = ?")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -143,7 +160,15 @@ func updateTask(w http.ResponseWriter, r *http.Request) {
 }
 
 func deleteTask(w http.ResponseWriter, r *http.Request) {
-	id := r.PathValue("id")
+	idStr := r.PathValue("id")
+	
+	// Validação rigorosa: Garante que o ID é estritamente numérico
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		http.Error(w, "ID inválido: deve ser numérico", http.StatusBadRequest)
+		return
+	}
+
 	stmt, err := db.Prepare("DELETE FROM tasks WHERE id = ?")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
