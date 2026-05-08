@@ -1,0 +1,10 @@
+### Listar todas as tarefas
+GET http://localhost:8080/api/v1/tasks
+
+### Criar uma nova tarefa
+POST http://localhost:8080/api/v1/tasks
+Content-Type: application/json
+
+{
+    "title": "Minha primeira tarefa de teste"
+}
