@@ -1,80 +1,168 @@
+:root {
+    --primary-color: #4F46E5;
+    --primary-hover: #4338CA;
+    --danger-color: #EF4444;
+    --danger-hover: #DC2626;
+    --bg-color: #F3F4F6;
+    --card-bg: #FFFFFF;
+    --text-main: #1F2937;
+    --text-muted: #6B7280;
+    --border-color: #E5E7EB;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
     display: flex;
     justify-content: center;
-    padding-top: 50px;
-    margin: 0;
+    padding: 2rem 1rem;
+    min-height: 100vh;
 }
 
-.container {
-    background: white;
-    padding: 20px 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+.app-container {
+    background-color: var(--card-bg);
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    height: fit-content;
 }
 
-h1 {
+.app-header {
+    padding: 2rem 2rem 1rem;
     text-align: center;
-    color: #333;
+    border-bottom: 1px solid var(--border-color);
 }
 
-.input-container {
+.app-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.app-header p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+.input-section {
+    padding: 1.5rem 2rem;
+}
+
+#taskForm {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 0.5rem;
 }
 
-input[type="text"] {
+#taskInput {
     flex: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-button {
-    padding: 10px 15px;
-    background-color: #28a745;
+#taskInput:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+#addBtn {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#addBtn:hover {
+    background-color: var(--primary-hover);
+}
+
+.list-section {
+    padding: 0 2rem 2rem;
+}
+
+.task-list {
+    list-style: none;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--bg-color);
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex: 1;
+    overflow: hidden;
+}
+
+.task-checkbox {
+    width: 1.25rem;
+    height: 1.25rem;
+    accent-color: var(--primary-color);
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #218838;
+.task-text {
+    font-size: 1rem;
+    word-break: break-word;
+    transition: color 0.2s;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-}
-
-li.completed span {
+.task-item.completed .task-text {
     text-decoration: line-through;
-    color: #888;
+    color: var(--text-muted);
 }
 
 .delete-btn {
-    background-color: #dc3545;
-    padding: 5px 10px;
+    background-color: transparent;
+    color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    transition: all 0.2s;
 }
 
 .delete-btn:hover {
-    background-color: #c82333;
+    background-color: var(--danger-color);
+    color: white;
 }
 
-.checkbox {
-    margin-right: 10px;
-    cursor: pointer;
+/* Responsividade */
+@media (max-width: 480px) {
+    .app-container {
+        border-radius: 0;
+        box-shadow: none;
+    }
+    body {
+        padding: 0;
+    }
 }

@@ -3,18 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <title>Delta Tasks | Lista Profissional</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Usando uma fonte moderna do Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>Minhas Tarefas</h1>
-        <div class="input-container">
-            <input type="text" id="taskInput" placeholder="Adicionar nova tarefa...">
-            <button onclick="addTask()">Adicionar</button>
-        </div>
-        <ul id="taskList"></ul>
-    </div>
+    <main class="app-container">
+        <header class="app-header">
+            <h1>Delta Tasks</h1>
+            <p>Gerencie suas tarefas com segurança e eficiência.</p>
+        </header>
+
+        <section class="input-section">
+            <form id="taskForm">
+                <input type="text" id="taskInput" placeholder="O que precisa ser feito?" autocomplete="off" required>
+                <button type="submit" id="addBtn">Adicionar</button>
+            </form>
+        </section>
+
+        <section class="list-section">
+            <ul id="taskList" class="task-list">
+                <!-- As tarefas serão injetadas aqui de forma segura pelo JS -->
+            </ul>
+        </section>
+    </main>
     <script src="app.js"></script>
 </body>
 </html>
